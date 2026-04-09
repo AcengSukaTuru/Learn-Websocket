@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Websocket</title>
+</head>
+<body>
+    <script>
+        let socket = new WebSocket("ws://localhost:8080/ws")
+        console.log("coba koneksi websocket")
+
+        socket.onopen = () => {
+            console.log("berhasil terhubung");
+            socket.send("Hi dari client")
+        }
+
+        socket.onmessage = (msg) => {
+            console.log("pesan dari server:", msg.data)
+        }
+
+        socket.onclose = (event) => {
+            console.log("koneksi terputus", event)
+        }
+
+        socket.onerror = (error) => {
+            console.log("socket error", error)
+        }
+    </script>
+</body>
+</html>
